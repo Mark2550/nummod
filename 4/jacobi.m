@@ -2,8 +2,8 @@ function x = jacobi(A,b, maxLepes)
 
 
 %A=[5 -2 3 0;-3 9 1 -2;2 -1 -7 1; 4 3 -5 7]
-%b=[-1 2 3 0.5]'
-%x=[0 0 0 0]'
+%b=[-1 2 3 0.5]
+%x=[0 0 0 0]
 
 % Kiegészítés (1): max iterációk száma (maxLepes)
 % adjuk meg a hibakorlátot
@@ -21,7 +21,6 @@ function x = jacobi(A,b, maxLepes)
 % x: megoldásvektor megfelelő közelítése
 % Az x(k+1) előállítása során x(k)-t végig meg kell őriznünk
 
-
 n = length(b);
 x = zeros(n,1);
 x_old = x;
@@ -38,8 +37,6 @@ hibakorlat = 1e-6;
     if m ~= n
         error('A mátrixnak négyzetesnek kell lennie!');
     end
-
-% Metódus
 
 for k=1:maxLepes
      for i = 1:n        % Szigma számolása
@@ -60,8 +57,3 @@ for k=1:maxLepes
         disp("Az iterációk száma elérte a maximális lépésszámot!");
      end
 end
-
-
-
-
-

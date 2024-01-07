@@ -1,9 +1,13 @@
 function approx = lnmaprox(fokszam, x, y)
+
+    % lnmaprox(4, [-2,-1,0,1,2], [-4, -2, 1, 2, 4])
+    % fokszam megadása: pontok -1
+
     % Ellenőrzés (csomópontok száma megegyezik-e a fokszámmal)
     if length(x) ~= fokszam + 1 || length(y) ~= fokszam + 1
         error('A csomópontok száma nem egyezik meg a fokszámmal!');
     end
-
+    
     % normálegyenletrendszernek kell egy mátrixot létrehozni
     A = zeros(fokszam + 1, fokszam + 1);
     for i = 1:fokszam + 1
@@ -18,7 +22,7 @@ function approx = lnmaprox(fokszam, x, y)
         B(i) = sum(y .* x.^(i-1));
     end
 
-    % Oldjuk meg a normálegyenletrendszert
+    % a normálegyenletrendszer megoldása
     approx = A \ B;
 
     % Ha szükséges, kérjük a felhasználót, hogy ábrázolja az eredményt

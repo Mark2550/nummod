@@ -1,5 +1,8 @@
 function x = gaussel1_3(A,b)
 
+% Determinánshoz: 
+% https://www.symbolab.com/solver/matrix-determinant-calculator
+% /%5Cdet%5Cbegin%7Bpmatrix%7D1%262%26-1%5C%5C%202%26-1%263%5C%5C%20-1%263%261%5Cend%7Bpmatrix%7D?or=input
 %   A = [ 1 2 -1;2 -1 3;-1 3 1 ]
 %   b = [4;3;6]
 
@@ -26,7 +29,7 @@ if size(A,1) < size(A,2)
     return
 end
 
-% Túlhatározott: Ha több "oszlop" van mint sor; több "információt" hordozw
+% Túlhatározott: Ha több "oszlop" van mint sor; több "információt" hordoz
 % x + y = 2
 % 2x + 2y = 4
 % 3x + 3y = 6
@@ -41,7 +44,7 @@ end
 % Gauss elimináció:
 
 % Elimináció közbülső mátrixa (kérésre, A^(i)):
-reszletek = input("Szeretné kiiratni a küzbülső mátrixot?");
+reszletek = input("Szeretné kiiratni a küzbülső mátrixot? (1 - igen)");
 
 for k=1:n
     for l=k+1:n
@@ -51,7 +54,7 @@ for k=1:n
         % Ha a főátlóbeli elemek mind 0 abban az esetben van szükség
         % sor/oszlop cserére
 
-        m =  A(l,k)/A(k,k);     % Osztó/szorzó hogy kinullázzuk az elemeket
+        m =  A(l,k)/A(k,k);             % Osztó/szorzó hogy kinullázzuk az elemeket
         A(l,:) = A(l,:) - A(k,:)*m;     % Főátló alatti elemek nullázása
         b(l) = b(l) - b(k)*m;
         % Közbülső mátrix kiiratása:
@@ -75,6 +78,7 @@ for k=n-1:-1:1
     x(k) = (b(k)-A(k,k+1:n)*x(k+1:n))/A(k,k);
 end
 % ---------------------------- 1. feladat vége ----------------------------
+
 
 % ---------------------------- 3. feladat kezdete -------------------------
 A_inv = inv(A);

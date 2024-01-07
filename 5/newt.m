@@ -1,39 +1,24 @@
-function x = newt(fv,x0,a,b,n,pontossag)
-% a=1,b=2
-% fv = @(x)x^3-2*x-1
-% n=100, pontossag=1e-6
-
-    % [a,b] - intervallum
+function x = newt(fv,x0,n)
+% a=1,b=2,fv = {'x^4 - 1', 'sin(x)-1 + cos(x)'},n=100,  x0=1
+    % newt('sin(x)-2*x-3', 5, 64)
+    % A fv bemenő paramétert karakteres tömbben kell megadni különben:
+    % Argument must be string, character vector, or cell array of character vectors.
+    % Error in newt (line 14)
+    % fv_sym = str2sym(f)
     % n - lépésszám
     % x0 -kiinduló érték
     % TFH.: f′(x) != 0 és x0  R, akkor: 
     % xn+1​=xn​−f′(xn​) / f(xn​)
     
-    syms x;
     % FONTOS!!
     % Ahhoz hogy a syms x működjön telepíteni kell a 
     % Symbolic Math Toolbox-ot (bővítmény)
 
-    if(fv(x0) * diff(diff(x0)) <= 0)
-        error("A monoton konvergencia tétele nem teljesül!");
+    syms x;
+    fv_sym = str2sym(fv); % Szimbolikus kifejezés
+    derivalt = diff(fv_sym, x);
+    x = x0;
+    for k = 1:n
+        x = x - double(subs(fv_sym, x) / subs(derivalt, x));
     end
-
-    if(x0 <= a && x0 >= b) %x0 nincs az intervallumban
-        error("x0 nincs az intervallumban!");
-    end
-    
-    derivalt = diff(fv, x);
-    for k=1:n
-        fvX = fv(x0);    % a fv értéke a kezdőpontban
-        dfX = derivalt(x0);  % x0 deriváltjának értéke
-
-        x1 = x0 - fvX / dfX;
-
-        if x1-x0 < pontossag
-            x = x1;
-            disp(['Iterációk száma: ', k]);
-            return;
-        end
-
-        x0 = x1;
-    end
+end

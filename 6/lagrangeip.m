@@ -1,4 +1,4 @@
-function summary = lagrangeip(x,y,abrazolni)
+function lagrangeip(x,y,abrazolni)
 
 % abrazolni: felhasználó szeretne-e grafikus ábrát
 % megoldas: az interpolációs polinom Lagrange alakja
@@ -7,11 +7,10 @@ function summary = lagrangeip(x,y,abrazolni)
 min_x = min(x);
 max_x = max(x);
 osszeg = 0;
-ertekek = x;
 % min és max szükséges a határérték (limit) meghatározásához
-
-for k=1:length(x)
-    for l=1:length(x)
+n = length(x);
+for k=1:n
+    for l=1:n
         r=1;
         if l~=k     % def. és tétel alapján i != k
 
@@ -25,9 +24,9 @@ for k=1:length(x)
     end
     osszeg = osszeg + r*y(k); % num22_05HO.pdf 6. oldalán található
                                     % Ln(xi)= ... képlet
-    ertekek(k) = osszeg;
+    % ertekek(k) = osszeg;
 end
-
+F = sum(osszeg);
 if(abrazolni)
     % Létrehozunk egy teret 
     px = linspace(min_x, max_x,1000);
@@ -35,7 +34,8 @@ if(abrazolni)
     
     c = length(x)-1;
     for k=1:length(px)
-        py(k) = ertekek(k)*px.^c;
+        % py(k) = ertekek(k)*px.^c;
+        py(k) = F*px.^c;
         c = c-1;
     end
 plot(x,y, '-s')
@@ -44,4 +44,3 @@ plot(px,py,'-r')
 end
 
 end
-

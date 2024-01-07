@@ -4,9 +4,7 @@ function interp = newtonip(x,y,p)
     % interp: az interpolációs polinom Newton alakja
     % képlet: num22_05HO.pdf 16. oldala
 
-    % x = [1 2 4 7]
-    % y = [0 3 -1 2]
-    % p = 5
+    % x = [1 2 4 7],y = [0 3 -1 2],p = 5
     % eredmény = 2
     n = length(x);
     f = zeros(n, n); % Newton együtthatók táblázata

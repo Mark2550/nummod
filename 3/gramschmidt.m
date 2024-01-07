@@ -2,12 +2,12 @@ function [Q,R] = gramschmidt(A)
 % https://people.inf.elte.hu/hozsaai/3_felev/Nummod1/Locsi-esti-ea-dia/nummod1esti_ea04.pdf
 % itt minden szépen le van írva
 
+% gramschmidt([2 5 4; 6 8 0; 3 -3 2])
 
 % A - négyzetes Mátrix
 % Q és R: ortogonális és felső3szög M.
 % QR felbontás = ortogonális felbontás
 % A = Q*R
-
 
 % Ellenőrzés: A oszlopai lineárisan függetlenek:
 if rank(A) == size(A, 2)
@@ -43,4 +43,3 @@ for k=1:n
     % normalizálás
     Q(:,k) = Q(:,k)/R(k,k); % qk = qk / rkk
 end
-

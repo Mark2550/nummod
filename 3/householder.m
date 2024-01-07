@@ -1,6 +1,7 @@
 function M = householder(p1,p2)
 
-
+% householder([6;2;3;0], [4;2;5;2])
+% householder([1;2;3], [1;1;1])
 if (norm(p1, 2) ~= norm(p2, 2)) || length(p1) ~= length(p2)    % tétel alapján
     error('A vektorok dimenziója/normája hibás!')
 end
@@ -19,4 +20,3 @@ hossz = length(p);
 
 H = eye(length(p)) - hossz * (v * v');
 M = H;
-

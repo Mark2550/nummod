@@ -15,7 +15,7 @@ end
 % x - megoldásvektor
 % Li és LU-t nem kell számolni!
 
-n = max(size(A));       % Mátrix rangja
+n = max(size(A))       % Mátrix rangja
 % A GE négyzetes mátrix esetén hajtható vége ÉS a mátrix sora meg kell
 % egyezzen a b vektor sorainak számával:
 % Ha a mátrix alulhatározott:
@@ -26,7 +26,7 @@ if size(A,1) < size(A,2)
     return
 end
 
-% Túlhatározott: Ha több "oszlop" van mint sor; több "információt" hordoz
+% Túlhatározott: Ha több "oszlop" van mint sor; több "információt" hordozw
 % x + y = 2
 % 2x + 2y = 4
 % 3x + 3y = 6
@@ -76,7 +76,8 @@ function x = Teljes(A,b,reszletek)
     Ab = [A,b];
 
     for k = 1:n
-        % Abszolútértékkel dolgozunk, mert főelemkiválasztásnál erre van szükség
+        % Abszolútértékkel dolgozunk, mert főelemkiválasztásnál erre van
+        % szükség
 
         [maxVal,maxRow] = max(abs(Ab(k:end, k:end)));
         % A fenti sor létrehoz egy felső3szög mátrixot
@@ -85,11 +86,13 @@ function x = Teljes(A,b,reszletek)
         % Meghatározza az abszolútértékek között a maximális értéket
         maxRow = maxRow(maxCol);
         
+
         % Sorcsere
         if maxRow > 1
             Ab([k, k+maxRow-1],:) = Ab([k+maxRow-1,k],:);
         end
         
+
         %Oszlopcsere
         if maxCol > 1
             Ab(:,[k, k+maxCol-1])=Ab(:,[k+maxCol-1,k]);
@@ -118,3 +121,7 @@ function x = megoldas(U,b)      % Egyenlet megoldása, ismeretlenek meghatároz�
         x(k) = (b(k) - U(k,k+1:end) * x(k+1:end)) / U(k, k);
     end
 end
+
+
+
+

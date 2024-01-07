@@ -11,11 +11,7 @@ function x = intfel(fv, a, b, n, pontossag)
 
 % https://math.uni-pannon.hu/~lipovitsa/num/5.pdf
 
-% func = @(x) x^2 - 2
-% pontossag = 1e-6
-% a=0
-% b=2
-% n=100
+% fv = @(x) x^2 - 2, pontossag = 1e-6, a=0, b=2, n=100
 % eredmény: 14142
 % VAGY
 % fv = @(x) cos(x);
@@ -45,5 +41,4 @@ function x = intfel(fv, a, b, n, pontossag)
         end
  end
  error('Nem sikerült az intervallum felezés, túl kevés a lépésszám!');
-c = (a*fv(b)-b*fv(a)) / (fv(b)-fv(a));
-
+% c = (a*fv(b)-b*fv(a)) / (fv(b)-fv(a));
